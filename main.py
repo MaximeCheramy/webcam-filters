@@ -3,6 +3,7 @@ import cv2
 import mediapipe as mp
 import numpy as np
 import pyfakewebcam
+from tools.fps import print_fps
 
 from filters.head_follow import head_follow
 
@@ -47,7 +48,10 @@ with mp_face_detection.FaceDetection(
 
     image = head_follow(image, results)
     
-    windowVisible = cv2.getWindowProperty(win_name, cv2.WND_PROP_VISIBLE)    
+    windowVisible = cv2.getWindowProperty(win_name, cv2.WND_PROP_VISIBLE)
+
+    print_fps()
+
     # Flip the image horizontally for a selfie-view display.
     cv2.imshow(win_name, cv2.flip(image, 1))
 
