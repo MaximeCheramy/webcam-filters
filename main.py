@@ -24,6 +24,10 @@ capture_height = cap.get(4)
 if capture_width != VIRTUAL_WIDTH or capture_height != VIRTUAL_HEIGHT:
   print("Warning: capture device does not support requested frame size")
 
+win_name = 'MediaPipe Face Detection'
+cv2.namedWindow(win_name, cv2.WINDOW_AUTOSIZE)
+cv2.startWindowThread()
+
 with mp_face_detection.FaceDetection(
     model_selection=0, min_detection_confidence=0.3) as face_detection:
 
@@ -124,13 +128,15 @@ with mp_face_detection.FaceDetection(
     background = background[s_y:s_y+orig_shape[0],s_x:s_x + orig_shape[1]]
 
     image = background
-
+    
+    windowVisible = cv2.getWindowProperty(win_name, cv2.WND_PROP_VISIBLE)    
     # Flip the image horizontally for a selfie-view display.
-    cv2.imshow('MediaPipe Face Detection', cv2.flip(image, 1))
+    cv2.imshow(win_name, cv2.flip(image, 1))
+
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     if image.shape[0] != VIRTUAL_WIDTH or image.shape[1] != VIRTUAL_HEIGHT:
       image = cv2.resize(image, (VIRTUAL_WIDTH, VIRTUAL_HEIGHT))
     camera.schedule_frame(image)
-    if cv2.waitKey(5) & 0xFF == 27:
+    if not windowVisible or cv2.waitKey(5) & 0xFF == 27:
       break
 cap.release()
