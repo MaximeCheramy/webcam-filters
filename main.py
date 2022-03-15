@@ -76,7 +76,7 @@ with mp_face_detection.FaceDetection(
       # f = new_f * .05 + prev_f *.95
       prev_f = f
     else:
-      print("not found, keep current settings")
+      print("Face not found, keep current settings")
       center_x = current_center_x
       center_y = current_center_y
       f = prev_f
