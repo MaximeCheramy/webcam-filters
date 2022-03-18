@@ -46,19 +46,20 @@ with mp_face_detection.FaceDetection(
     image.flags.writeable = False
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     results = face_detection.process(image)
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
     image = head_follow(image, results)
     
     windowVisible = cv2.getWindowProperty(win_name, cv2.WND_PROP_VISIBLE)
 
-    print_fps()
+    # print_fps()
 
-    # Flip the image horizontally for a selfie-view display.
-    cv2.imshow(win_name, cv2.flip(image, 1))
-
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     if image.shape[0] != VIRTUAL_WIDTH or image.shape[1] != VIRTUAL_HEIGHT:
       image = cv2.resize(image, (VIRTUAL_WIDTH, VIRTUAL_HEIGHT))
+    
+    # Flip the image horizontally for a selfie-view display.
+    cv2.imshow(win_name, cv2.flip(image, 1))
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     camera.schedule_frame(image)
     if not windowVisible or cv2.waitKey(5) & 0xFF == 27:
       break
