@@ -8,12 +8,12 @@ Create a virtual camera using [v4l2loopback](https://github.com/umlaeute/v4l2loo
 modprobe v4l2loopback exclusive_caps=1 video_nr=8 card_label="Virtual Camera" 
 ```
 
-Install dependencies:
+Dependencies are managed using [Poetry](https://python-poetry.org). Install dependencies using:
 
 ```
-pip3 install -r requirements.txt
+poetry install
 ```
 
 ## Run
 
-python3 main.py
+poetry run python main.py
