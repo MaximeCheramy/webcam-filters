@@ -17,7 +17,6 @@ head_follow(image, results[, print]) -> Image
 def dramatic_eye_zoom(image, results):
   global current_center_x, current_center_y, prev_box
 
-  orig_shape = image.shape
   width = image.shape[1]
   height = image.shape[0]
 

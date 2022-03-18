@@ -28,8 +28,6 @@ def head_follow(image, results):
     current_center_x = image.shape[1] / 2
     current_center_y = image.shape[0] / 2
 
-  image.flags.writeable = True
-  image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
   if results.detections:
     for detection in results.detections:
       box = detection.location_data.relative_bounding_box
