@@ -5,6 +5,7 @@ import numpy as np
 import pyfakewebcam
 from tools.fps import print_fps
 
+from filters.dramatic_eye_zoom import dramatic_eye_zoom
 from filters.head_follow import head_follow
 
 SOURCE_CAMERA = int(os.environ.get('SOURCE_CAMERA', '0'))
