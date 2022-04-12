@@ -48,12 +48,12 @@ with mp_face_detection.FaceDetection(
     results = face_detection.process(image)
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
-    image = head_follow(image, results)
+    # image = head_follow(image, results)
+    image = dramatic_eye_zoom(image, results)
     
     windowVisible = cv2.getWindowProperty(win_name, cv2.WND_PROP_VISIBLE)
 
     # print_fps()
-
     if image.shape[0] != VIRTUAL_WIDTH or image.shape[1] != VIRTUAL_HEIGHT:
       image = cv2.resize(image, (VIRTUAL_WIDTH, VIRTUAL_HEIGHT))
     
